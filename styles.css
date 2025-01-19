@@ -1,14 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #1a191d;
+    background-color: #FFF1DC;
     font-family: "Roboto Condensed", serif;
     font-optical-sizing: auto;
     font-style: normal;
-    padding-right: 5%; 
-    padding-left: 5%;
 }
 
 .light_mode {
-    background-color: #FBF5DD;
+    background-color: #FFF1DC;
 }
 
 .dark_mode {
@@ -18,26 +22,28 @@ body {
 .navbar {
     display: flex;
     gap: 1rem;
+    background-color: #E5F3FD;
+    width: 100%;
+    padding: 0 3rem;
+    height: 5rem;
+    align-items: center;
 }
 
 .navbar .name {
     margin-right: auto;
     position: relative;
-    color: white;
-    padding: 25px 6px;
+    color: #16404D;
     text-decoration: none;
     font-size: 1.2rem;
-    opacity: 1;
     transition: opacity 0.3s ease;
 }
   
 .navbar a {
     position: relative;
-    color: white;
-    padding: 25px 16px;
+    color: #16404D;
+    padding: 25px 20px;
     text-decoration: none;
     font-size: 1.2rem;
-    opacity: 1;
     transition: opacity 0.3s ease;
 }
 
@@ -48,7 +54,7 @@ body {
     bottom: 20px;
     width: 0;
     height: 2px;
-    background-color: white;
+    background-color: #16404D;
     transition: width 0.3s ease, left 0.3s ease;
     transform: translateX(-50%);
 }
@@ -59,16 +65,8 @@ body {
     transform: translateX(-50%);
   }
 
-.navbar a.not-clicked {
-    opacity: 0.5;
-}
-  
 .navbar a.clicked::after {
     width: 50%;
     left: 50%;
     transform: translateX(-50%);
-}
-  
-.navbar a.clicked {
-    opacity: 1;
 }
