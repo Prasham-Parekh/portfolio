@@ -1,5 +1,10 @@
 body {
     background-color: #1a191d;
+    font-family: "Roboto Condensed", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    padding-right: 5%; 
+    padding-left: 5%;
 }
 
 .light_mode {
@@ -12,7 +17,22 @@ body {
 
 .navbar {
     display: flex;
-  }
+    justify-content: right;
+    gap: 1rem;
+}
+
+.navbar .name {
+    margin-right: auto;
+    position: relative;
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
   
 .navbar a {
     position: relative;
@@ -23,7 +43,7 @@ body {
     text-decoration: none;
     font-size: 17px;
     opacity: 1;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease;
 }
 
 .navbar a::after {
@@ -34,7 +54,7 @@ body {
     width: 0;
     height: 2px;
     background-color: white;
-    transition: width 0.5s ease, left 0.5s ease;
+    transition: width 0.3s ease, left 0.3s ease;
     transform: translateX(-50%);
 }
 
