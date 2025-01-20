@@ -178,3 +178,11 @@ h1::after {
 .box {
     margin-top: 1.5%;
 }
+
+footer {
+    background-color: #16404D;
+    color: #E5F3FD;
+    text-align: center;
+    padding: 1.2rem 0;
+    font-size: 0.9rem;
+}

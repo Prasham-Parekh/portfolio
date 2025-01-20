@@ -9,3 +9,7 @@ navItems.forEach(item => {
     this.classList.add('clicked');
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById('year').textContent = new Date().getFullYear();
+});
