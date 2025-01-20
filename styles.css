@@ -130,7 +130,7 @@ h1::after {
     padding: 0.8rem 2rem;
     font-size: 1.2rem;
     font-weight: 600;
-    color: #FFF;
+    color: #E5F3FD;
     background-color: #16404D;
     text-decoration: none;
     border-radius: 15px;
@@ -173,4 +173,8 @@ h1::after {
 #about-section p {
     font-size: 1.3rem;
     text-align: justify;
+}
+
+.box {
+    margin-top: 1.5%;
 }
