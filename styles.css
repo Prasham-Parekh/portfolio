@@ -168,15 +168,12 @@ h1::after {
     grid-template-columns: 30% 70%;
     margin-left: 10%;
     margin-right: 10%;
+    align-items: center;
 }
 
 #about-section p {
     font-size: 1.3rem;
     text-align: justify;
-}
-
-.box {
-    margin-top: 1.5%;
 }
 
 footer {
