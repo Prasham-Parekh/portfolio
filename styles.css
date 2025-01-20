@@ -159,7 +159,6 @@ h1::after {
     text-align: center;
 }
 
-
 .bio_image {
     width: 70%;
 }
@@ -173,5 +172,5 @@ h1::after {
 
 #about-section p {
     font-size: 1.3rem;
-    text-align: left;
+    text-align: justify;
 }
