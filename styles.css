@@ -176,6 +176,42 @@ h1::after {
     text-align: justify;
 }
 
+#contact-section p {
+    margin-bottom: 2rem;
+    color: #16404D;
+    font-size: 1.2rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 40rem;
+    margin: 0 auto;
+}
+
+.contact-form label {
+    font-size: 1rem;
+    color: #16404D;
+    text-align: left;
+}
+
+.contact form input,
+.contact form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    border: 1px solid #ccc;
+    font-family: "Roboto Condensed", serif;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #16404D;
+    outline: none;
+    box-shadow: 0 0 5px rgba(22, 64, 77, 0.3);
+}
+
 footer {
     background-color: #16404D;
     color: #E5F3FD;
