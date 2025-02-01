@@ -1,5 +1,6 @@
-**Prasham Parekh's Portfolio** <br />
-&emsp; Welcome to my personal portfolio website! This site showcases my projects, skills, and experiences as a computer science student passionate about software development, web design, and artificial intelligence.
+# Prasham Parekh's Portfolio <br />
+
+Welcome to my personal portfolio website! This site showcases my projects, skills, and experiences as a computer science student passionate about software development, web design, and artificial intelligence.
 
 🚀 **Live Website** <br />
 &emsp;    - Website link: https://prasham-parekh.github.io/portfolio/
