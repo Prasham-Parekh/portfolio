@@ -3,24 +3,542 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
+    <title>Resume - Prasham Parekh</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================
+           RESUME PAGE SPECIFIC STYLES
+           ========================================== */
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        .resume-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .resume-header-bar h1 {
+            font-size: 2rem;
+        }
+
+        .resume-header-bar h1::after {
+            display: none;
+        }
+
+        .resume-actions {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .resume-actions .btn {
+            margin-top: 0;
+            font-size: 1rem;
+            padding: 0.6rem 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent);
+            color: var(--text-on-dark);
+        }
+
+        /* Resume Card */
+        .resume-card {
+            background-color: var(--bg-card, #ffffff);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px var(--shadow-color);
+            padding: 3rem;
+            transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        /* Resume Name & Contact */
+        .resume-name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            text-align: center;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .resume-contact {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.4rem 1.2rem;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .resume-contact a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.2s ease, color var(--transition-speed) ease;
+        }
+
+        .resume-contact a:hover {
+            opacity: 0.7;
+            text-decoration: underline;
+        }
+
+        .resume-contact .separator {
+            color: var(--text-secondary);
+            opacity: 0.4;
+        }
+
+        /* Section Headers */
+        .resume-section-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--accent);
+            margin-bottom: 1rem;
+            margin-top: 1.8rem;
+            transition: color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+
+        .resume-section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Entry */
+        .resume-entry {
+            margin-bottom: 1.2rem;
+        }
+
+        .resume-entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .resume-entry-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        .resume-entry-subtitle {
+            font-size: 0.95rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--text-secondary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        .resume-entry-date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .resume-entry-location {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        .resume-entry-tech {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-left: 0.3rem;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .resume-entry ul {
+            margin-top: 0.4rem;
+            padding-left: 1.4rem;
+            list-style: disc;
+        }
+
+        .resume-entry li {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+            transition: color var(--transition-speed) ease;
+        }
+
+        /* Skills */
+        .resume-skills-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.5rem 1rem;
+            font-size: 0.95rem;
+        }
+
+        .resume-skills-label {
+            font-weight: 700;
+            color: var(--text-primary);
+            white-space: nowrap;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .resume-skills-value {
+            color: var(--text-primary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        /* Section */
+        #resume-section {
+            padding-top: 7rem;
+            padding-bottom: 3rem;
+            min-height: 100vh;
+            box-shadow: none;
+        }
+
+        /* ==========================================
+           RESPONSIVE - RESUME
+           ========================================== */
+        @media (max-width: 768px) {
+            .resume-card {
+                padding: 2rem 1.5rem;
+                border-radius: 12px;
+            }
+
+            .resume-name {
+                font-size: 1.8rem;
+            }
+
+            .resume-contact {
+                font-size: 0.85rem;
+                gap: 0.3rem 0.8rem;
+            }
+
+            .resume-entry-header {
+                flex-direction: column;
+                gap: 0.1rem;
+            }
+
+            .resume-entry-date {
+                white-space: normal;
+            }
+
+            .resume-skills-grid {
+                grid-template-columns: 1fr;
+                gap: 0.4rem;
+            }
+
+            .resume-skills-label {
+                margin-top: 0.4rem;
+            }
+
+            .resume-header-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .resume-header-bar h1 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .resume-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .resume-name {
+                font-size: 1.5rem;
+            }
+
+            .resume-section-title {
+                font-size: 1rem;
+            }
+
+            .resume-entry-title {
+                font-size: 0.95rem;
+            }
+
+            .resume-entry li {
+                font-size: 0.88rem;
+            }
+
+            .resume-actions .btn {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+
+            #resume-section {
+                padding-top: 5.5rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+        }
+
+        @media (min-width: 2560px) {
+            .resume-container {
+                max-width: 1100px;
+            }
+
+            .resume-card {
+                padding: 4rem;
+            }
+
+            .resume-name {
+                font-size: 2.8rem;
+            }
+
+            .resume-contact {
+                font-size: 1.1rem;
+            }
+
+            .resume-section-title {
+                font-size: 1.35rem;
+            }
+
+            .resume-entry-title {
+                font-size: 1.2rem;
+            }
+
+            .resume-entry li {
+                font-size: 1.1rem;
+            }
+
+            .resume-skills-grid {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="navbar">
-            <a class="name" href="./index.html">prasham parekh</a>
-            <a class="nav-item" href="./index.html#home-section">home</a>
-            <a class="nav-item" href="./index.html#about-section">about</a>
-            <a class="nav-item" href="./index.html#project-section">projects</a>
-            <a class="nav-item" href="./index.html#contact-section">contact</a>
-          </div>
-    </header>
-    <section>
-        <embed src="./prashamResume.pdf" type="application/pdf" width="100%" height="790px" />
+    <div class="navbar">
+        <a class="name" href="./index.html">prasham parekh</a>
+        <a class="nav-item" href="./index.html#home-section">home</a>
+        <a class="nav-item" href="./index.html#about-section">about</a>
+        <a class="nav-item" href="./index.html#project-section">projects</a>
+        <a class="nav-item" href="./index.html#contact-section">contact</a>
+        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <section id="resume-section">
+        <div class="resume-container">
+
+            <div class="resume-header-bar">
+                <h1>my resume</h1>
+                <div class="resume-actions">
+                    <a href="./prashamResume.pdf" download class="btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        download PDF
+                    </a>
+                    <a href="./index.html#contact-section" class="btn btn-outline">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        contact me
+                    </a>
+                </div>
+            </div>
+
+            <div class="resume-card">
+
+                <div class="resume-name">Prasham Parekh</div>
+                <div class="resume-contact">
+                    <span>+1 (343) 777-5532</span>
+                    <span class="separator">|</span>
+                    <a href="mailto:prasham.parekh@gmail.com">prasham.parekh@gmail.com</a>
+                    <span class="separator">|</span>
+                    <a href="https://github.com/Prasham-Parekh" target="_blank">github.com/Prasham-Parekh</a>
+                    <span class="separator">|</span>
+                    <a href="https://linkedin.com/in/prasham-parekh" target="_blank">linkedin.com/in/prasham-parekh</a>
+                </div>
+
+                <!-- Education -->
+                <div class="resume-section-title">Education</div>
+                <div class="resume-entry">
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-title">Carleton University</span>
+                        <span class="resume-entry-date">September 2022 &ndash; May 2026</span>
+                    </div>
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-subtitle">Bachelor of Computer Science Major</span>
+                        <span class="resume-entry-location">Ottawa, ON</span>
+                    </div>
+                    <ul>
+                        <li>Relevant coursework: Data Structures, Discrete Mathematics, Algorithms, Introduction to Software Engineering, Operating Systems, Statistics, Thinking with Data, Computational Statistical Modelling</li>
+                        <li style="font-style: italic;">Honors: 2022-2023 Award of Excellence for International Students</li>
+                    </ul>
+                </div>
+
+                <!-- Projects -->
+                <div class="resume-section-title">Projects</div>
+
+                <div class="resume-entry">
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-title">Tetris AI with Deep Q-Learning<span class="resume-entry-tech"> | Python, PyTorch, Pygame, NumPy</span></span>
+                        <span class="resume-entry-date">Nov 2025 &ndash; Dec 2025</span>
+                    </div>
+                    <ul>
+                        <li>Implemented a DQN agent for modified Tetris with random spawning and 5 powerup types, achieving 28x performance improvement over heuristic baselines (644,031 vs 22,955 average score)</li>
+                        <li>Designed 4-feature state representation and trained over 3,000 episodes using experience replay and epsilon-greedy exploration for multi-objective decision-making</li>
+                    </ul>
+                </div>
+
+                <div class="resume-entry">
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-title">3D Fluid Simulator<span class="resume-entry-tech"> | C++, OpenFrameworks, GLSL</span></span>
+                        <span class="resume-entry-date">Oct 2025 &ndash; Dec 2025</span>
+                    </div>
+                    <ul>
+                        <li>Developed real-time 3D fluid simulation using Particle Hydrodynamics with 50-1000 customizable particles</li>
+                        <li>Implemented dual rendering modes (particle spheres and fluid mesh) with metaball surface reconstruction and interactive force application system</li>
+                    </ul>
+                </div>
+
+                <div class="resume-entry">
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-title">Insulin Pump Simulator<span class="resume-entry-tech"> | C++, Qt6, QML</span></span>
+                        <span class="resume-entry-date">Jan 2025 &ndash; Apr 2025</span>
+                    </div>
+                    <ul>
+                        <li>Collaborated in a 4-person team to develop an insulin pump simulator modeled after Tandem t:slim X2, implementing Control IQ automated delivery and manual bolus calculation</li>
+                        <li>Architected business logic layer using Clean Architecture, designing profile management system with customizable basal rates and insulin delivery configurations</li>
+                    </ul>
+                </div>
+
+                <div class="resume-entry">
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-title">Flappy Bird AI<span class="resume-entry-tech"> | Python, Pygame, NEAT</span></span>
+                        <span class="resume-entry-date">Jun 2024 &ndash; Jan 2025</span>
+                    </div>
+                    <ul>
+                        <li>Implemented a dynamic game environment with pipes, bird movement, gravity, and collision detection</li>
+                        <li>Utilized NEAT to evolve AI agents that learn to navigate pipes and avoid obstacles</li>
+                        <li>Designed a fitness function to evaluate and reward agents based on their survival time and performance</li>
+                    </ul>
+                </div>
+
+                <!-- Experience -->
+                <div class="resume-section-title">Experience</div>
+
+                <div class="resume-entry">
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-title">Fall Orientation Coordinator - Internal Partnerships</span>
+                        <span class="resume-entry-date">Mar 2025 &ndash; Oct 2025</span>
+                    </div>
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-subtitle">Carleton University</span>
+                        <span class="resume-entry-location">Ottawa, ON</span>
+                    </div>
+                    <ul>
+                        <li>Coordinate and manage outreach to over 150+ student clubs and campus partners to promote volunteer opportunities and event involvement</li>
+                        <li>Collaborate closely with university stakeholders to improve communication across student services</li>
+                    </ul>
+                </div>
+
+                <div class="resume-entry">
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-title">International Student Ambassador</span>
+                        <span class="resume-entry-date">Jul 2024 &ndash; Present</span>
+                    </div>
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-subtitle">Carleton University</span>
+                        <span class="resume-entry-location">Ottawa, ON</span>
+                    </div>
+                    <ul>
+                        <li>Provide video interviews, testimonials, and write online reviews promoting Carleton</li>
+                        <li>Participate in chats and respond to queries from prospective students via the peer-to-peer app</li>
+                    </ul>
+                </div>
+
+                <div class="resume-entry">
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-title">Sales Associate</span>
+                        <span class="resume-entry-date">Mar 2023 &ndash; May 2023</span>
+                    </div>
+                    <div class="resume-entry-header">
+                        <span class="resume-entry-subtitle">Purdy's Chocolatier</span>
+                        <span class="resume-entry-location">Ottawa, ON</span>
+                    </div>
+                    <ul>
+                        <li>Delivered excellent customer service and collaborated with team to meet goals</li>
+                    </ul>
+                </div>
+
+                <!-- Skills -->
+                <div class="resume-section-title">Skills</div>
+                <div class="resume-skills-grid">
+                    <span class="resume-skills-label">Programming Languages:</span>
+                    <span class="resume-skills-value">Python, R, Bash, Java, C, C++, JS ES6, TS, HTML, CSS, C#, SQL, Haskell, GO</span>
+
+                    <span class="resume-skills-label">Technologies:</span>
+                    <span class="resume-skills-value">AWS, Git/Github, React, Qt6, QML, JUnit, Node.js, MongoDB, PostgreSQL, TensorFlow, NumPy, Unity3D, Unreal Engine, NEAT</span>
+
+                    <span class="resume-skills-label">Languages:</span>
+                    <span class="resume-skills-value">English, Hindi, Gujarati, Arabic</span>
+
+                    <span class="resume-skills-label">Other:</span>
+                    <span class="resume-skills-value">Communication, Leadership, Patience, Emotional Intelligence, Teamwork</span>
+                </div>
+
+            </div>
+        </div>
     </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Prasham Parekh. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const toggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+        toggle.addEventListener('click', function () {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+    </script>
 </body>
 </html>
